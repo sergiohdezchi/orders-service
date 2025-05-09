@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true) 
 public class User extends Base {
-    @NotNull(message = "Username cannot be null")
-    private String username;
     @NotNull(message = "Password cannot be null")
     private String password;
     @NotNull(message = "Eemail cannot be null")
