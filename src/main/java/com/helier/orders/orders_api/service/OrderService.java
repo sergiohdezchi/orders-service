@@ -16,6 +16,7 @@ import com.helier.orders.orders_api.dto.request.ProductRequestDTO;
 import com.helier.orders.orders_api.dto.response.OrderResponseDTO;
 import com.helier.orders.orders_api.exception.InsufficientStockException;
 import com.helier.orders.orders_api.exception.ResourceNotFoundException;
+import com.helier.orders.orders_api.kafka.producer.OrderProducer;
 import com.helier.orders.orders_api.mapper.OrderMapper;
 import com.helier.orders.orders_api.model.Item;
 import com.helier.orders.orders_api.model.Order;
@@ -24,7 +25,7 @@ import com.helier.orders.orders_api.model.User;
 import com.helier.orders.orders_api.repository.ItemRepository;
 import com.helier.orders.orders_api.repository.OrderRepository;
 import com.helier.orders.orders_api.repository.UserRepository;
-import com.helier.orders.orders_api.repository.ProductRespository;
+import com.helier.orders.orders_api.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,9 +34,10 @@ import lombok.RequiredArgsConstructor;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final ProductRespository productRepository;
+    private final ProductRepository productRepository;
     private final ItemRepository itemRepository;
     private final OrderMapper orderMapper;
+    private final OrderProducer orderProducer;
 
     @Transactional
     public OrderResponseDTO createOrder(OrderRequestDTO orderRequestDTO) {
@@ -54,8 +56,9 @@ public class OrderService {
             .collect(Collectors.toList()));
 
         order = orderRepository.save(order);
-
-        return orderMapper.toResponseDto(order);
+        OrderResponseDTO orderResponseDTO = orderMapper.toResponseDto(order);
+        orderProducer.sendOrderCreatedMessage(orderResponseDTO);
+        return orderResponseDTO;
     }
 
     @Transactional(readOnly = true)

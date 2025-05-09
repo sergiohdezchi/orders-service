@@ -35,7 +35,7 @@ public class OrderController {
 
     @GetMapping("/page")
     public ResponseEntity<Page<OrderResponseDTO>> getAllOrders(@PageableDefault(sort = "userId", size = 5) Pageable pageable, @RequestParam(required = false) String userId) {
-        
+        System.out.println("User ID: " + userId);
         Page<OrderResponseDTO> orders = userId != null
             ? orderService.getAllOrdersByUserId(userId, pageable)
             : orderService.getAllOrders(pageable);

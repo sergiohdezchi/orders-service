@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.helier.orders.orders_api.model.Product;
 
 @Repository
-public interface ProductRespository extends MongoRepository<Product, String> {
+public interface ProductRepository extends MongoRepository<Product, String> {
 
 }
