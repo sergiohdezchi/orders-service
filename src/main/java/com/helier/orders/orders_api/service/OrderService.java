@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.helier.orders.orders_api.dto.request.OrderRequestDTO;
 import com.helier.orders.orders_api.dto.request.ProductRequestDTO;
 import com.helier.orders.orders_api.dto.response.OrderResponseDTO;
@@ -57,8 +58,23 @@ public class OrderService {
         return orderMapper.toResponseDto(order);
     }
 
+    @Transactional(readOnly = true)
+    public Page<OrderResponseDTO> getAllOrders(Pageable pageable) {
+        Page<Order> orders = orderRepository.findAll(pageable);
+        
+        return orders.map(orderMapper::toResponseDto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<OrderResponseDTO> getAllOrdersByUserId(String userId, Pageable pageable) {
+        Page<Order> orders = orderRepository.findByUserId(userId, pageable);
+        
+        return orders.map(orderMapper::toResponseDto);
+    }
+
     private User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
         return userRepository.findOneByEmail(authentication.getName())
             .orElseThrow(ResourceNotFoundException::new);
     }
@@ -66,6 +82,7 @@ public class OrderService {
     private Order createOrderForUser(User user) {
         Order order = new Order();
         order.setUserId(user.getId());
+        
         return orderRepository.save(order);
     }
 
@@ -82,6 +99,7 @@ public class OrderService {
 
             updateProductStock(product, productRequestDTO.getQuantity());
         }
+        
         return savedItems;
     }
 
@@ -102,6 +120,7 @@ public class OrderService {
         item.setOrderId(orderId);
         item.setUnitPrice(product.getPrice());
         item.setQuantity(quantity);
+        
         return item;
     }
 
