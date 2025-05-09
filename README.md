@@ -33,14 +33,14 @@ http://localhost:8081
 
 ### Registrar Usuario en el Endpoint
 ```bash
-{{base_url}}/auth/sign-up
+POST {{base_url}}/auth/sign-up
 ```
 
 ![image.png](images/02.png)
 
 ### Login con el usuario registrado
 ```bash
-{{base_url}}/auth/sign-up
+POST {{base_url}}/auth/sign-up
 
 {
     "email": "sergio.hernandez+9@gmail.com",
@@ -60,7 +60,7 @@ http://localhost:8081
 ### Usar Endpoint para obtener la lista de productos
 
 ```bash
-{{base_url}}/products/page?page=0
+GET {{base_url}}/products/page?page=0
 ```
 En query params puedes usar page para el numero de pagina
 
