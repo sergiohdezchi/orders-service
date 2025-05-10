@@ -99,3 +99,9 @@ GET {{base_url}}/orders/page?page=0&userId=681e8449d06ba3558119b0ca
 
 ![image.png](images/11.png)
 
+### Recompilar  el proyecto en caso de ser necesario
+
+```bash
+mvn clean package -Dspring.profiles.active=default
+```
+

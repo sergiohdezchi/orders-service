@@ -1,11 +1,13 @@
 package com.helier.orders.orders_api.initializers;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 import com.helier.orders.orders_api.model.Product;
 import com.helier.orders.orders_api.repository.ProductRepository;
 
+@Profile("dev")
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final ProductRepository productRepository;
