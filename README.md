@@ -5,7 +5,6 @@ través de Kafka. Todos los servicios se orquestan con Docker para facilitar su 
 
 ## 🧰 Requisitos 
 
-Asegúrate de tener lo siguiente instalado: 
 Docker
 Docker Compose
 git para clonar el repositorio 
