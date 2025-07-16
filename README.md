@@ -1,10 +1,14 @@
-# ECommerceHub - Order Management System
-
-![Java](https://img.shields.io/badge/Java-23-orange?style=flat-square&logo=openjdk)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.5-brightgreen?style=flat-square&logo=spring)
-![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?style=flat-square&logo=mongodb)
-![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-7.4.0-black?style=flat-square&logo=apache-kafka)
-![Docker](https://img.shields.io/badge/Docker-Compose-blue?style=flat-square&logo=docker)
+<div align="center">
+  <img src="logo.svg" alt="ECommerceHub Logo" width="500">
+  
+  # ECommerceHub - Order Management System
+  
+  ![Java](https://img.shields.io/badge/Java-23-orange?style=flat-square&logo=openjdk)
+  ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.5-brightgreen?style=flat-square&logo=spring)
+  ![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?style=flat-square&logo=mongodb)
+  ![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-7.4.0-black?style=flat-square&logo=apache-kafka)
+  ![Docker](https://img.shields.io/badge/Docker-Compose-blue?style=flat-square&logo=docker)
+</div>
 
 ## 📋 Overview
 
